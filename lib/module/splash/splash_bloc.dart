@@ -94,19 +94,26 @@ class SplashBloc extends Bloc<SplashEvent, SplashState> {
 
 
   Future getAppCurrencies() async {
-    await repository.getAppCurrencies(
-        onSuccess: (Currencies settings){
-          dataLoaded ++;
-          if(Auth.getAuth()!=null){
-            needData ++;
-            getAuthUser();
-          } else {
-            goNext();
-          }
-        },
-        onError: (Map<String,dynamic> data){
-        }
-    );
+    // await repository.getAppCurrencies(
+    //     onSuccess: (Currencies settings){
+    //       dataLoaded ++;
+    //       if(Auth.getAuth()!=null){
+    //         needData ++;
+    //         getAuthUser();
+    //       } else {
+    //         goNext();
+    //       }
+    //     },
+    //     onError: (Map<String,dynamic> data){
+    //     }
+    // );
+    dataLoaded ++;
+    if(Auth.getAuth()!=null){
+      needData ++;
+      getAuthUser();
+    } else {
+      goNext();
+    }
   }
 
 
