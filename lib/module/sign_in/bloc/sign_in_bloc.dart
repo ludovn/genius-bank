@@ -13,6 +13,7 @@ import '../../../Widgets/default_dialog.dart';
 import '../../../config/dependency.dart';
 import '../../../controllers/share_helper.dart';
 import '../../../data/auth.dart';
+import '../../../data/user.dart';
 import '../view/code_verify.dart';
 import 'sign_in_event.dart';
 import 'sign_in_state.dart';
@@ -55,27 +56,37 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
   }
 
   Future _submitData(SubmitData event, Emitter<SignInState> emit) async {
-    if(!formKey.currentState!.validate()) return;
-    emit(state.clone(state: PageState.Loading));
-    await repository.postSignIn(
-      body: <String,dynamic>{
-        AppConstant.email: email.text,
-        AppConstant.password: password.text,
-      },
-      onSuccess: (data) {
-        instance.registerSingleton<Auth>(data);
-        emit(state.clone(auth: data));
-        if(data.data!.user!.twofa == "1"){
-          verifyDialog();
-        } else {
-          ShareHelper.setAuth(data);
-          goAndRemoveAllPages(Routes.MAIN_PAGE);
-        }
-      },
-      onError: (data) {
-      },
+    final data = Auth(
+        status: true,
+        data: AuthData(
+            token: '',
+            user: User()
+        )
     );
-    emit(state.clone(state: PageState.Success));
+    instance.registerSingleton<Auth>(data);
+    ShareHelper.setAuth(data);
+    goAndRemoveAllPages(Routes.MAIN_PAGE);
+    // if(!formKey.currentState!.validate()) return;
+    // emit(state.clone(state: PageState.Loading));
+    // await repository.postSignIn(
+    //   body: <String,dynamic>{
+    //     AppConstant.email: email.text,
+    //     AppConstant.password: password.text,
+    //   },
+    //   onSuccess: (data) {
+    //     instance.registerSingleton<Auth>(data);
+    //     emit(state.clone(auth: data));
+    //     if(data.data!.user!.twofa == "1"){
+    //       verifyDialog();
+    //     } else {
+    //       ShareHelper.setAuth(data);
+    //       goAndRemoveAllPages(Routes.MAIN_PAGE);
+    //     }
+    //   },
+    //   onError: (data) {
+    //   },
+    // );
+    // emit(state.clone(state: PageState.Success));
   }
 
 
