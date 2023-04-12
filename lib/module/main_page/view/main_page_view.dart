@@ -48,10 +48,10 @@ class MainPage extends StatelessWidget {
           ],
         ),
         leadingWidth: 40.r,
-        actions: [
-          currencyView(state,context),
-          16.horizontalSpace
-        ],
+        // actions: [
+        //   currencyView(state,context),
+        //   16.horizontalSpace
+        // ],
       ),
       drawer: drawerView(context,state),
       body: AppBackground(
