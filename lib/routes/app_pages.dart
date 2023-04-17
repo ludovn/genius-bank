@@ -4,6 +4,7 @@ import 'package:genius_bank/module/blogs/view/blogs_view.dart';
 import 'package:genius_bank/module/change_password/change_password_view.dart';
 import 'package:genius_bank/module/contact_us/contact_us_view.dart';
 import 'package:genius_bank/module/dps/all_dps/view/all_dps_view.dart';
+import 'package:genius_bank/module/kyc/view/kyc_view.dart';
 import 'package:genius_bank/module/loan/all_loan/view/all_loan_view.dart';
 import 'package:genius_bank/module/loan/apply_loan/view/apply_loan_view.dart';
 import 'package:genius_bank/module/loan/loan_plan/view/loan_plan_view.dart';
@@ -49,13 +50,15 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.SPLASH;
+  // TODO: change the initial route on release
+  static const INITIAL = Routes.KYC;
 
   static Map<String, WidgetBuilder> routes = {
     INITIAL : (context) => SplashPage(),
     Routes.SIGN_IN : (context) => SignInPage(),
     Routes.SIGN_UP : (context) => SignUpPage(),
     Routes.KYC_VERIFICATION : (context) => KycVerificationPage(),
+    Routes.KYC : (context) => const KycPage(),
     Routes.MAIN_PAGE : (context) => MainPage(),
     Routes.EDIT_PROFILE : (context) => MyProfilePage(),
     Routes.CHANGE_PASSWORD : (context) => ChangePasswordPage(),

@@ -8,6 +8,7 @@ abstract class Routes {
   static const SIGN_IN = '/sign-in';
   static const SIGN_UP = '/sign-up';
   static const KYC_VERIFICATION = '/kyc-verification';
+  static const KYC = '/kyc';
   static const EDIT_PROFILE = '/edit-profile';
   static const CHANGE_PASSWORD = '/change-password';
   static const RESET_PASSWORD = '/reset-password';
